@@ -15,23 +15,21 @@ public class CommandRunner {
 	            boolean rs = true;
 	            listener.getLogger().println(commands);
 	            p = Runtime.getRuntime().exec(commands);
-	            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	            p.waitFor();
-	            while ((s = br.readLine()) != null) {
-	            	listener.getLogger().println(s);
-	            	System.out.println("line: " + s);
-	            }
 	            BufferedReader brError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+	            
 	            String errline = null;
 	            while ((errline = brError.readLine()) != null) {
 	             listener.getLogger().println(errline);
 	             System.out.println(errline);
-	             rs = false;
+	            // rs = false;
 	            }
-	              //  System.out.println("line: " + s);
-	   
-	           // System.out.println ("exit: " + p.exitValue());
-	            listener.getLogger().println("exit: " + p.exitValue());
+	            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	            while ((s = br.readLine()) != null) {
+	            	listener.getLogger().println(s);
+	            	System.out.println("line: " + s);
+	            }
+	            p.waitFor();
+	            listener.getLogger().println("exit: " + p.exitValue());	            
 	            p.destroy();
 	      
 	            return rs;

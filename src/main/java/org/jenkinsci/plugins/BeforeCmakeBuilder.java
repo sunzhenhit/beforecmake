@@ -124,6 +124,7 @@ public class BeforeCmakeBuilder extends Builder {
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
 			throws InterruptedException, IOException {
 		FilePath WorkSpacePath = build.getWorkspace();
+	
 		String SDKfilename = "";
 		String codefilename = "";
 		// System.out.println(WorkSpacePath);
@@ -213,7 +214,12 @@ public class BeforeCmakeBuilder extends Builder {
 		@Override
 		public boolean isApplicable(Class<? extends AbstractProject> jobType) {
 			// TODO Auto-generated method stub
-			return jobType == FreeStyleProject.class;
+			if(jobType == FreeStyleProject.class) {
+				return true;
+			}
+			
+			
+			return false;
 		}
 
 		@Override

@@ -168,16 +168,16 @@ public class BeforeCmakeBuilder extends Builder {
 			CommandRunner cr = new CommandRunner();
 			if (cr.exits(SDKUnpacakePath)) {
 				String delCmd = "rm -rf " + SDKUnpacakePath;
-				rs = cr.linuxcommand(delCmd, listener);
+				rs = cr.command(delCmd, listener);
 			}
 			String mkCmd = "mkdir " + SDKUnpacakePath;
-			rs = cr.linuxcommand(mkCmd, listener);
+			rs = cr.command(mkCmd, listener);
 
 			if (rs == false) {
 				return rs;
 			}
 			String extCmd = SDKUnpackageScript + " " + SDKPath + " -C " + SDKUnpacakePath;
-			rs = cr.linuxcommand(extCmd, listener);
+			rs = cr.command(extCmd, listener);
 
 			if (rs == false) {
 				return rs;
@@ -192,17 +192,17 @@ public class BeforeCmakeBuilder extends Builder {
 			CodeUnpackagePath = WorkSpacePath + "/" + "UnCode";
 			if (cr.exits(CodeUnpackagePath)) {
 				String delCmd = "rm -rf " + CodeUnpackagePath;
-				rs = cr.linuxcommand(delCmd, listener);
+				rs = cr.command(delCmd, listener);
 			}
 			mkCmd = "mkdir " + CodeUnpackagePath;
-			rs = cr.linuxcommand(mkCmd, listener);
+			rs = cr.command(mkCmd, listener);
 
 			if (rs == false) {
 				return rs;
 			}
 			CodeUnpackageScript = command;
 			extCmd = CodeUnpackageScript + " " + CodePath + " -C " + CodeUnpackagePath;
-			rs = cr.linuxcommand(extCmd, listener);
+			rs = cr.command(extCmd, listener);
 
 		}
 		return rs;
